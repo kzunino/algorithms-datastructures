@@ -41,6 +41,9 @@ from the array.
 then we check to see if the complementary number has been added before the new element
 being evaluated.
 
+O(n) because for the worst case scenario we only loop over the array one time
+    - however, space complexity goes up because we are caching data in the object
+
 */
 
 /* Naive Solution */
