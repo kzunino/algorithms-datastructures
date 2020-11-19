@@ -4,7 +4,7 @@ Is Unique
 - implement an algorithm to determine if a string has all unique 
 characters and cannot use additional structures
 
-
+-then try without additional data structures
 
 */
 
@@ -40,7 +40,7 @@ console.log(isUnique('abcdefghijk'));
 console.log(isUnique('abcdeefghijkl'));
 
 // without a data structure we can search to see if there are two occurrences of
-// saves on space complexity
+// saves on space complexity because we don't add any additional storage
 function stringIsUnique(str) {
   for (i = 0; i < str.length; i++) {
     if (str.indexOf(str[i]) !== str.lastIndexOf(str[i])) {
