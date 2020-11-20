@@ -8,10 +8,13 @@ characters and cannot use additional structures
 
 */
 
-// O(n) worst case
+// O(n) worst case but maybe O(1) because string will never be evaluated if more than
+// 128 characters
 // space complexity is O(n)
 
 const isUnique = (str) => {
+  // if string is greater than 128 characters then false --ASCII has only 128 chars
+  if (str.length > 128) return false;
   let charactersObj = {};
   for (let i = 0; i < str.length; i++) {
     if (charactersObj[str[i]] === undefined) {
