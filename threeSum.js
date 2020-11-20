@@ -25,9 +25,10 @@ var threeSum = function (nums) {
       nums.reduce((acc, num) => {
         return acc + num;
       }, 0) === 0
-    )
+    ) {
       results.push(nums);
-    else return results;
+    }
+    return results;
   }
 
   // Create a for loop with two pointers inside to track values
@@ -86,3 +87,8 @@ console.log(threeSum([0]));
 //   [ -1, 0, 1 ]
 // ]
 console.log(threeSum([-1, 0, 1, 2, -1, -4, 3, 2, 7, -7]));
+
+// Test five:
+// Input: nums = [0,0,0]
+// Output: [[0,0,0]]
+console.log(threeSum([0, 0, 0]));
