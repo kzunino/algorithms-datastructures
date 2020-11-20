@@ -15,6 +15,7 @@ characters and cannot use additional structures
 const isUnique = (str) => {
   // if string is greater than 128 characters then false --ASCII has only 128 chars
   if (str.length > 128) return false;
+
   let charactersObj = {};
   for (let i = 0; i < str.length; i++) {
     if (charactersObj[str[i]] === undefined) {
