@@ -45,3 +45,8 @@ const compressString = (str) => {
   if (compressed.length >= str.length) return str;
   else return compressed;
 };
+
+console.log(compressString('aabcccccaaa') === 'a2b1c5a3');
+console.log(compressString('aabbcc') === 'aabbcc');
+console.log(compressString('aaabbbcccd') === 'a3b3c3d1');
+console.log(compressString('AAaaBBCCCDD') === 'A2a2B2C3D2');
