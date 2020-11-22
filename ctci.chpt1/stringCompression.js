@@ -25,7 +25,7 @@ Space Complexity:
 */
 
 const compressString = (str) => {
-  let compressed = '';
+  let output = '';
   let count = 1;
   let i = 0;
   let j = i + 1;
@@ -35,14 +35,14 @@ const compressString = (str) => {
       count++;
       j++;
     } else if (str[i] !== str[j]) {
-      compressed += str[i] + count;
+      output += str[i] + count;
       count = 1;
       i = j;
       j++;
     }
   }
-  if (compressed.length >= str.length) return str;
-  else return compressed;
+  if (output.length >= str.length) return str;
+  else return output;
 };
 
 console.log(compressString('aabcccccaaa') === 'a2b1c5a3');
