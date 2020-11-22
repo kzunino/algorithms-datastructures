@@ -16,8 +16,7 @@ Constraints: optimize
 Edge Case: if string cannot be compressed more return original string 
 
 Time Complexity: O(n) - one loop
-Space Complexity: O(n) - worst case scenario you compress one character and rebuild
-string 
+Space Complexity: O(1) - set number of variables that dont change based on string size
 
 Optimized version:
 Time Complexity:
