@@ -1,7 +1,6 @@
 /* 
 CTCI - 1.9
 
-
 String Rotation 
 
 Assume you have a method isSubstring, which checks if one word is a substring of another.
