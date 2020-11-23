@@ -50,3 +50,26 @@ console.log(
   isSubstring('django', 'python') === false,
   isSubstring('patagonia', 'goniapata') === true
 );
+
+// Alternate solution
+//    erbottlewat
+// waterbottlewaterbottle
+
+const isSubstring2 = (s1, s2) => {
+  if (s1.length !== s2.length) return false;
+  if (s1 === s2) return true;
+
+  let s1s1 = s1 + s1;
+  if (s1s1.includes(s2)) return true;
+  return false;
+};
+
+console.log(
+  isSubstring2('waterbottle', 'terbottlewa') === true,
+  isSubstring2('', '') === true,
+  isSubstring2('waterbottle', 'waterbottle') === true,
+  isSubstring2('water', 'waterbottle') === false,
+  isSubstring2('javascript', 'scriptjava') === true,
+  isSubstring2('django', 'python') === false,
+  isSubstring2('patagonia', 'goniapata') === true
+);
