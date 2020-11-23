@@ -1,49 +1,47 @@
 /* 
-CTCI - 1.7
+CTCI - 1.8
 
-** I didn't solve this one on my own =(
+Zero Matrix
 
-Rotate Matrix 90 degrees
-
-Given an image represented by N xN matrix, where each pixel in the image is 
-represented by an integer, write a method to rotate the image by 90 degrees in place.
+Write and algorithm such that if an element in an M x N matrix is 0, its entire
+row and column are set to 0.
 
 EXAMPLE
-Input: NxN matrix
-Output: NxN matrix rotated
+Input: NxM matrix
+Output: NxM matrix with col & rows zeroed out
 
-Input: nxm matrix
-Output: rotated 90 degree matrix
-Constraints: rotate in place
+Input: NxM matrix
+Output: Matrix with zeroed columns 
+Constraints: rotate in place, optimize 
 Edge Case: empty matrix 
 
-Time Complexity: O(2N^2) ? nested for loops and then we iterate again to change col
-Space Complexity: O(n)
+Time Complexity: O(NM + NM) ? nested for loops and then we iterate again to change col
+Space Complexity: O(M) - set relies on size of the columns
 
 Optimized version:
 Time Complexity:
 Space Complexity:
 
 */
-
 const zeroMatrix = (matrix) => {
   if (matrix.length === 0) return [];
   if (matrix.length === 1) return matrix;
 
+  // use a set because columns wont repeat
   let colToZero = new Set();
 
   // Iterate over rows
   for (let i = 0; i < matrix.length; i++) {
+    let zeroWholeRow = false;
     // If row includes a zero, save column coordinate and change row
-    if (matrix[i].includes(0)) {
-      for (let j = 0; j < matrix[i].length; j++) {
-        if (matrix[i][j] === 0) {
-          colToZero.add(j);
-        }
-        // since we know 0 exists in row change all values to 0 after saving to set
-        matrix[i][j] = 0;
+    for (let j = 0; j < matrix[i].length; j++) {
+      if (matrix[i][j] === 0) {
+        zeroWholeRow = true;
+        colToZero.add(j);
       }
     }
+    // changes whole row to 0 after finding column coordinate
+    if (zeroWholeRow) matrix[i].fill(0);
   }
 
   // Now we need to change the columns
