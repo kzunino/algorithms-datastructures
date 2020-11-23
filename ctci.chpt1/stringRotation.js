@@ -19,8 +19,8 @@ Output: boolean
 Constraints: only make one call to isSubstring
 Edge Case: empty string, matching strings, strings with diff len 
 
-Time Complexity: O(n)
-Space Complexity: O(1) 
+Time Complexity: O(n) - constant because we loop through each character and compare
+Space Complexity: O(1) - we change the string in place
 
 Optimized version:
 Time Complexity:
