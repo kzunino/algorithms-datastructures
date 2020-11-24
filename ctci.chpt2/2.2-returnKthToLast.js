@@ -71,6 +71,19 @@ class SinglyLinkedList {
     }
     return node;
   }
+
+  findKthElementRecursion(k, head = this.head) {
+    // recurse to the last item in list
+    if (!head) return 0;
+    //
+    let index = list.findKthElementRecursion(k, head.next) + 1;
+    //searches for index count to match Kth element
+    if (index === k) {
+      console.log(k + 'th to the last node is ' + head.val);
+    }
+    //returns the last index count / size of the list
+    return index;
+  }
 }
 
 let list = new SinglyLinkedList();
@@ -81,5 +94,7 @@ list.push(1);
 list.push(4);
 // console.log(list);
 
-console.log(list.findKthElement(2));
-console.log(list.toString());
+// console.log(list.findKthElement(2));
+// console.log(list.toString());
+
+console.log(list.findKthElementRecursion(2));
