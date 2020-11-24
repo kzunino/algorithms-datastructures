@@ -24,6 +24,16 @@ class SinglyLinkedList {
     return this;
   }
 
+  toString() {
+    let head = this.head;
+    let result = [];
+    while (head) {
+      result.push(head.val);
+      head = head.next;
+    }
+    return result.join(', ');
+  }
+
   removeDuplicates() {
     if (!this.head) return undefined;
     if (this.length === 1) return this;
@@ -55,6 +65,7 @@ list.push(2);
 list.push(3);
 list.push(1);
 list.push(4);
-console.log(list);
+// console.log(list);
 
 console.log(list.removeDuplicates());
+console.log(list.toString());
