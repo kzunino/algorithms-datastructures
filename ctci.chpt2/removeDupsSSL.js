@@ -1,3 +1,30 @@
+/* 
+CTCI - 2.1
+
+Remove Duplicate Values from Singly Linked List
+
+Write code to remove duplicates from an unsorted linked list.
+
+EXAMPLE
+Input: SLL - 3, 2, 3, 1, 4
+Output: SLL - 3, 2, 1, 4
+
+Input: removeDuplicateVal method
+Output: SLL with no duplicates 
+Constraints: no temporary buffer, optimize
+Edge Case: empty list or with one node
+
+Time Complexity: O(n) - we traverse the whole list once in search of duplicates
+Space Complexity: O(n) - we use a has table to track duplicates, which saves
+                            time complexity from being O(n^2)
+
+
+Optimized version:
+Time Complexity:
+Space Complexity:
+
+*/
+
 class Node {
   constructor(val) {
     this.val = val;
