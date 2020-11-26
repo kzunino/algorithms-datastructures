@@ -90,6 +90,7 @@ class SinglyLinkedList {
       } else {
         morePointer = morePointer.next = this.tail = node;
       }
+      // moves pointer on Original list and re
       node = node.next;
     }
     // points links smaller list to greater list and severs other values
