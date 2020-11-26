@@ -20,7 +20,7 @@ Output: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
 Input: node partition value
 Output: 3 -> 1 -> 2 -> 10 -> 5 -> 5 -> 8
 Constraints: optimize
-Edge Case: 
+Edge Case: no head returns undefined
 
 Time Complexity: O(n) - we traverse the whole list
 Space Complexity: O(1)
@@ -73,15 +73,14 @@ class SinglyLinkedList {
     if (!head) return undefined;
     // Create two new singly linked lists
     // (don't worry about the tail as we traverse only from the head)
-    const smallerList = new SinglyLinkedList();
-    const greaterList = new SinglyLinkedList();
-
+    const smallerListHead = new SinglyLinkedList();
+    const greaterListHead = new SinglyLinkedList();
     // pointer to traverse list
     let node = head;
 
     // pointers to traverse new linked lists
-    let lessPointer = smallerList;
-    let morePointer = greaterList;
+    let lessPointer = smallerListHead;
+    let morePointer = greaterListHead;
 
     // while node exists check if node val > or < partition
     while (node) {
@@ -93,12 +92,11 @@ class SinglyLinkedList {
       }
       node = node.next;
     }
-
     // points links smaller list to greater list and severs other values
-    lessPointer.next = greaterList.next;
-    // severs the trailing values from original node
+    lessPointer.next = greaterListHead.next;
+    // severs the trailing values from original node list
     morePointer.next = null;
-    return list;
+    return smallerListHead.next;
   }
 }
 
@@ -113,7 +111,4 @@ list.push(1);
 
 // console.log(list);
 
-console.log(list.toString());
-
 console.log(list.partition(5));
-console.log(list.toString());
