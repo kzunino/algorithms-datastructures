@@ -23,7 +23,7 @@ Constraints: optimize
 Edge Case: no head returns undefined
 
 Time Complexity: O(n) - we traverse the whole list
-Space Complexity: O(1)
+Space Complexity: O(1) - only reassigning nodes
 
 
 Optimized version:
