@@ -111,4 +111,4 @@ list.push(1);
 
 // console.log(list);
 
-console.log(list.partition(5));
+console.log(JSON.stringify(list.partition(5)));
