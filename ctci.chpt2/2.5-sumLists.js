@@ -104,12 +104,42 @@ const sumListsReversed = (list1, list2) => {
   return newList;
 };
 
+const sumListsRecursiveReversed = (list1_head, list2_head, carry = 0) => {
+  //Base case
+  if (!list1_head && !list2_head && carry === 0) return null;
+
+  // create the first node
+  const newNode = new Node();
+  let sum = carry;
+
+  // add values to sum
+  if (list1_head) sum += list1_head.val;
+  if (list2_head) sum += list2_head.val;
+
+  // add sum mod 10 to new node
+  newNode.val = sum % 10;
+
+  // update carry
+  carry = Math.floor(sum / 10);
+
+  list1_head ? (list1_head = list1_head.next) : null;
+  list2_head ? (list2_head = list2_head.next) : null;
+
+  // calls self with updated values
+  const nextNewNode = sumListsRecursiveReversed(list1_head, list2_head, carry);
+
+  //links nodes together
+  newNode.next = nextNewNode;
+
+  return newNode;
+};
+
 // Reversed order linked list
 
-let list = new SinglyLinkedList();
-list.push(7);
-list.push(1);
-list.push(6);
+let list1 = new SinglyLinkedList();
+list1.push(7);
+list1.push(1);
+list1.push(6);
 
 let list2 = new SinglyLinkedList();
 list2.push(5);
@@ -120,4 +150,4 @@ list2.push(2);
 // console.log(sumListsReversed(list1, list2));
 
 //Recursive
-// console.log(list.sumListsRecursiveReversed(list2));
+console.log(sumListsRecursiveReversed(list1.head, list2.head));
