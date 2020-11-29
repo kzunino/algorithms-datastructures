@@ -216,7 +216,7 @@ function addListsHelper(list1, list2) {
     value = sum.carry + list1.val + list2.val,
     fullResult = insertBefore(sum.nodeSum, value % 10);
 
-  sum.nodeSum = fullResult; // , 0, null
+  sum.nodeSum = fullResult; // , 0, 0, null
   sum.carry = Math.floor(value / 10);
   return sum;
 }
