@@ -19,8 +19,8 @@ Output: (2 -> 1-> 9 )
 Constraints: optimize
 Edge Case: 
 
-Time Complexity: O(n) - we traverse the whole list
-Space Complexity: O(n) -creating new list
+Time Complexity: O(nm) - we traverse both list
+Space Complexity: O(n) -creating new list or O(n + k) -plus any spaces when doing recursion forwards
 
 
 Optimized version:
