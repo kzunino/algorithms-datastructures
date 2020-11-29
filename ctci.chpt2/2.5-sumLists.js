@@ -54,7 +54,23 @@ class SinglyLinkedList {
     this.length++;
     return this;
   }
-
+  pop() {
+    if (!this.head) return undefined;
+    let current = this.head;
+    let newTail = current;
+    while (current.next) {
+      newTail = current;
+      current = current.next;
+    }
+    this.tail = newTail;
+    this.tail.next = null;
+    this.length--;
+    if (this.length === 0) {
+      this.head = null;
+      this.tail = null;
+    }
+    return current;
+  }
   unShift(val) {
     let newNode = new Node(val);
     if (this.head === null) {
@@ -136,18 +152,87 @@ const sumListsRecursiveReversed = (list1_head, list2_head, carry = 0) => {
 
 // Reversed order linked list
 
-let list1 = new SinglyLinkedList();
-list1.push(7);
-list1.push(1);
-list1.push(6);
+// let list1 = new SinglyLinkedList();
+// list1.push(7);
+// list1.push(1);
+// list1.push(6);
 
-let list2 = new SinglyLinkedList();
-list2.push(5);
-list2.push(9);
-list2.push(2);
+// let list2 = new SinglyLinkedList();
+// list2.push(5);
+// list2.push(9);
+// list2.push(2);
 
 //  Non Recursive
 // console.log(sumListsReversed(list1, list2));
 
 //Recursive
-console.log(sumListsRecursiveReversed(list1.head, list2.head));
+// console.log(sumListsRecursiveReversed(list1.head, list2.head));
+
+// forward ordered lists
+let list1 = new SinglyLinkedList();
+list1.push(6);
+list1.push(0);
+list1.push(0);
+list1.push(0);
+
+let list2 = new SinglyLinkedList();
+list2.push(2);
+list2.push(0);
+list2.push(0);
+
+// Forward recursive - Not my solution =(
+
+class PartialSum {
+  constructor() {
+    this.nodeSum = null;
+    this.carry = 0;
+  }
+}
+
+function addLists(list1, list2) {
+  const len1 = list1.length; // 3
+  const len2 = list2.length; // 3
+
+  if (len1 < len2) list1 = padList(list1, len2 - len1);
+  else list2 = padList(list2, len1 - len2);
+
+  list1 = list1.head;
+  list2 = list2.head;
+
+  const sum = addListsHelper(list1, list2);
+
+  if (!sum.carry) return sum.nodeSum;
+  else return insertBefore(sum.nodeSum, sum.carry);
+}
+
+//    00
+
+function addListsHelper(list1, list2) {
+  if (!list1 && !list2) return new PartialSum();
+
+  // traverses all the way to the end of linked list recursively
+  // first node gets next = null, then next node.next = previous partialSum
+  const sum = addListsHelper(list1.next, list2.next),
+    value = sum.carry + list1.val + list2.val,
+    fullResult = insertBefore(sum.nodeSum, value % 10);
+
+  sum.nodeSum = fullResult; // , 0, null
+  sum.carry = Math.floor(value / 10);
+  return sum;
+}
+
+function padList(list, padding) {
+  for (let i = 0; i < padding; i++) {
+    list.unShift(0);
+  }
+
+  return list;
+}
+
+function insertBefore(list, value) {
+  const node = new Node(value);
+  if (list) node.next = list;
+  return node;
+}
+
+console.log(addLists(list1, list2));
