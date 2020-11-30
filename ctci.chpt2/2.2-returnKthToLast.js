@@ -78,6 +78,7 @@ class SinglyLinkedList {
     //
     let index = list.findKthElementRecursion(k, head.next) + 1;
     //searches for index count to match Kth element
+    // doest return anything
     if (index === k) {
       console.log(k + 'th to the last node is ' + head.val);
     }

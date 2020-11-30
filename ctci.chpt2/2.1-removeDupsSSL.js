@@ -92,6 +92,8 @@ list.push(2);
 list.push(3);
 list.push(1);
 list.push(4);
+list.push(3);
+
 // console.log(list);
 
 console.log(list.removeDuplicates());
