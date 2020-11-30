@@ -109,13 +109,15 @@ const isIntersecting = (l1, l2) => {
     longer = l2.head;
   }
 
+  // traverses the list one time comparing the nodes ahead
   while (shorter) {
+    //shortens longer list because intersection cant be before this point
+    // due to the fact that the lists are equal after the intersection
     if (diff > 0) {
       longer = longer.next;
       diff--;
     } else {
-      if (shorter.next.value === longer.next.value)
-        return (node = longer.next.next);
+      if (shorter.next.val === longer.next.val) return (node = longer.next);
       else {
         shorter = shorter.next;
         longer = longer.next;
