@@ -88,6 +88,7 @@ let list4 = new SinglyLinkedList();
 list4.push('r');
 list4.push('a');
 
+// O(n) time / 0(n) space
 const isPalindrome = (list) => {
   if (!list || list.length < 3) return false;
 
@@ -109,4 +110,38 @@ console.log(
   isPalindrome(list2) === true,
   isPalindrome(list3) === false,
   isPalindrome(list4) === false
+);
+
+// Recursive solution
+
+class MirrorNode {
+  constructor(head) {
+    this.node = head;
+    this.result = true;
+  }
+}
+
+const isPalindromeRecursive = (list) => {
+  let palindrome = checkPalindrome(list.head, list.length);
+  return palindrome.result;
+};
+
+const checkPalindrome = (head, length) => {
+  if (length === 0) return new MirrorNode(head);
+  if (length === 1) return new MirrorNode(head.next);
+
+  const compareNode = checkPalindrome(head.next, length - 2);
+  if (!compareNode.result || !compareNode.node) return compareNode;
+
+  compareNode.result = head.val === compareNode.node.val;
+  compareNode.node = compareNode.node.next;
+
+  return compareNode;
+};
+
+console.log(
+  isPalindromeRecursive(list1) === true,
+  isPalindromeRecursive(list2) === true,
+  isPalindromeRecursive(list3) === false,
+  isPalindromeRecursive(list4) === false
 );
