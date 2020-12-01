@@ -81,17 +81,6 @@ list2.push(3);
 list2.push(4);
 list2.push(5);
 
-let list3 = new SinglyLinkedList();
-list3.push('r');
-list3.push('a');
-list3.push('c');
-list3.push('e');
-list3.push('c');
-
-let list4 = new SinglyLinkedList();
-list4.push('r');
-list4.push('a');
-
 const isIntersecting = (l1, l2) => {
   if (!l1 || !l2) return null;
   const len1 = l1.length;
