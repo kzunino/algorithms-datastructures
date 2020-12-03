@@ -66,10 +66,14 @@ var reverseList = function (head) {
  * @return {ListNode}
  */
 var reverseList = function (head) {
+  // Base case
   if (!head || !head.next) return head;
 
   const reversedNodes = reverseList(head.next);
+
+  // sets the next node's next value to the current node — reversing the list
   head.next.next = head;
+  //severs reference of current node in stack to old next node
   head.next = null;
   return reversedNodes;
 };
