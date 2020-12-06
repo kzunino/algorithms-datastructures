@@ -40,8 +40,8 @@ Space Complexity:
 
 class TrippleStack {
   constructor() {
-    this.stack = [];
-    this.lengths = [0, 0, 0];
+    this._array = [];
+    this._lengths = [0, 0, 0];
   }
 
   _getLength(stack) {
