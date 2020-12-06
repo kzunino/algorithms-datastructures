@@ -18,7 +18,7 @@ Constraints:
 Edge Case: 
 
 Time Complexity: O(1) - the min val will always be accessed by last val in min arr
-Space Complexity: O(1) - 
+Space Complexity: O(1) - no increase to auxiliary space
 
 
 Optimized version:
@@ -50,5 +50,39 @@ class MinStack {
 
   getMin() {
     return this.min[this.min.length - 1];
+  }
+}
+
+// Optimization from leetcode user:
+
+// this.minArr keeps track of duplicate values as objects to save space
+// from indexing
+
+class MinStack {
+  constructor() {
+    this.stack = [];
+    this.minArr = [{val: Infinity, count: 1}];
+  }
+
+  push(x) {
+    this.stack.push(x);
+    let min = this.minArr[this.minArr.length - 1];
+    if (x === min.val) min.count++;
+    else if (x < min.val) this.minArr.push({val: x, count: 1});
+  }
+
+  pop() {
+    let item = this.stack.pop();
+    let min = this.minArr[this.minArr.length - 1];
+    if (item === min.val) min.count--;
+    if (!min.count) this.minArr.pop();
+  }
+
+  top() {
+    return this.stack[this.stack.length - 1];
+  }
+
+  getMin() {
+    return this.minArr[this.minArr.length - 1].val;
   }
 }
