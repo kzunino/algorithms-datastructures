@@ -97,3 +97,56 @@ class DinnerPlates {
     } else return -1;
   }
 }
+
+// Slightly optimized: keep track of last stack with values in and decrement so pop
+// doesnt have to loop through all stacks.... still too slow
+
+class DinnerPlates {
+  constructor(capacity) {
+    this.capacity = capacity;
+    this.stacks = [[]];
+    this.emptyStackIndeces = [];
+    this.lastStackWithValues = 0;
+  }
+
+  push(val) {
+    let lastStack = this.stacks.length - 1;
+
+    if (this.emptyStackIndeces.length) {
+      this.stacks[this.emptyStackIndeces[0]].push(val);
+      this.emptyStackIndeces.shift();
+    } else if (this.stacks[lastStack].length < this.capacity) {
+      this.stacks[lastStack].push(val);
+      this.lastStackWithValues++;
+    } else if (this.stacks[lastStack].length === this.capacity) {
+      this.stacks.push([val]);
+      this.lastStackWithValues++;
+    }
+  }
+
+  pop() {
+    // let lastStack = this.stacks.length - 1
+    let lastStack = Math.ceil(this.lastStackWithValues / this.capacity) - 1;
+    // if last stack is empty, decrement stacks to find last item
+    while (lastStack > -1) {
+      if (this.stacks[lastStack].length > 0) {
+        return this.stacks[lastStack].pop();
+      }
+      lastStack--;
+      this.lastStackWithValues - 2;
+    }
+    return -1;
+  }
+
+  popAtStack(index) {
+    if (this.stacks[index]) {
+      if (this.stacks[index].length > 0) {
+        this.emptyStackIndeces.push(index);
+        this.emptyStackIndeces.sort((a, b) => {
+          return a - b;
+        });
+        return this.stacks[index].pop();
+      } else return -1;
+    } else return -1;
+  }
+}
