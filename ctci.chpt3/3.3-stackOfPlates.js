@@ -150,3 +150,65 @@ class DinnerPlates {
     } else return -1;
   }
 }
+
+// Optimized solution from leetcode
+
+class DinnerPlates {
+  constructor(capacity) {
+    this.capacity = capacity;
+    this.stacks = [];
+    this.sortedEmptyArraySlotIndex = []; // big -> small
+  }
+
+  push(value) {
+    // O(1)
+    if (this.sortedEmptyArraySlotIndex.length === 0) {
+      // no empty array slots, append value the end
+      this.stacks.push(value);
+    } else {
+      this.stacks[this.sortedEmptyArraySlotIndex.pop()] = value; // add value to the first empty slot
+    }
+  }
+
+  pop() {
+    // amortized O(1)? in most cases? O(n) worst case (n = number of contiguous empty slots)
+    let value = this.stacks.pop();
+    while (this.stacks.length && value === undefined) {
+      // if value had been removed by popAtStack e.g. [value1, undefined, undefined, undefined]
+      value = this.stacks.pop();
+    }
+    return value === undefined ? -1 : value;
+  }
+
+  popAtStack(index) {
+    // O(n)
+    // locate stack in the array
+    const stackStartIndex = index * this.capacity;
+    const stackEndIndex = stackStartIndex + this.capacity - 1;
+
+    for (let i = stackEndIndex; i >= stackStartIndex; i--) {
+      if (this.stacks[i] !== undefined) {
+        // find the last non-empty value in the stack
+        const returnValue = this.stacks[i];
+        this.stacks[i] = undefined; // remove value from array
+        insertSorted(this.sortedEmptyArraySlotIndex, i); // add index to empty slots, sort big -> small
+        return returnValue;
+      }
+    }
+
+    return -1;
+  }
+}
+
+function insertSorted(sortedArray, value) {
+  // the value in the correct place in a sorted array
+  sortedArray.push(value);
+  let index = sortedArray.length - 1;
+  while (sortedArray[index] > sortedArray[index - 1]) {
+    [sortedArray[index], sortedArray[index - 1]] = [
+      sortedArray[index - 1],
+      sortedArray[index],
+    ]; // swap
+    index--;
+  }
+}
