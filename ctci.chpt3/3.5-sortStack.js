@@ -20,6 +20,8 @@ Edge Case:
 Time Complexity: push() operates at linear O(n) because worst case is we have
 to bubble the value to the end of the stack. The swapping itself is constant time
 
+bubbleSort will sort the stack without using another stack O(n^2)
+
 Space Complexity: O(1) - no increase to auxiliary space
 
 
