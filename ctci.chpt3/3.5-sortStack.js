@@ -5,7 +5,7 @@ Sort Stack
 
 Write a program to sort a stack such that the smallest items are on the top. You
 can use an additional temporary stack, but you may not copy the elements into any other data structure
-(such as an array). The stack supports the follwing operations. push, pop, peek,
+(such as an array). The stack supports the following operations. push, pop, peek,
 and isEmpty.
 
 EXAMPLE
@@ -54,6 +54,22 @@ class Stack {
         prevIdx = lastIdx - 1;
       }
     }
+  }
+  bubbleSort(stack) {
+    let noSwaps;
+    for (let i = stack.length; i > 0; i--) {
+      noSwaps = true;
+      for (let j = 0; j < i - 1; j++) {
+        if (stack[j] > stack[j + 1]) {
+          let temp = stack[j];
+          stack[j] = stack[j + 1];
+          stack[j + 1] = temp;
+          noSwaps = false;
+        }
+      }
+      if (noSwaps) break;
+    }
+    return stack;
   }
 }
 
