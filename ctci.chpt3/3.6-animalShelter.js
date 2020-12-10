@@ -49,6 +49,7 @@ class ShelterQueue {
     }
   }
 
+  //dequeues the oldest animal
   dequeueAny() {
     let d = this.dogQueue[this.dogQueue.length - 1];
     let c = this.catQueue[this.catQueue.length - 1];
