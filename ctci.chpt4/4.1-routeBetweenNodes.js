@@ -3,20 +3,21 @@ CTCI - 4.1
  
 Route Between Nodes
 
-Description
+Given a directed graph and some nodes S and E, design an algorithm to find 
+out where there is a route from S to E.
 
 EXAMPLE
 Input: 
 Output: 
 
-Input: 
-Output:
-Constraints: 
-Edge Case: 
+Input: Two vertices 
+Output: Boolean
+Constraints: optimize 
+Edge Case: no vertex
 
-Time Complexity:
+Time Complexity: O(n) - we could traverse the whole graph and not find the connection
 
-Space Complexity:
+Space Complexity: O(n) - creating a visited has table to keep track of nodes visited
 
 
 Optimized version:
@@ -52,6 +53,7 @@ class Graph {
     delete this.adjacencyList[vertex];
   }
 
+  // searches for a path between a stating node and a target end node
   isPath(start, end) {
     let result = false;
     let visited = {};
@@ -88,8 +90,6 @@ graph.addEdge('C', 'D');
 graph.addEdge('S', 'D');
 graph.addEdge('S', 'A');
 
-console.log(graph.adjacencyList);
-
 let graph2 = new Graph();
 graph2.addVertex('A');
 graph2.addVertex('B');
@@ -105,7 +105,22 @@ graph2.addEdge('C', 'D');
 graph2.addEdge('D', 'S');
 graph2.addEdge('S', 'A');
 
-console.log(graph2.adjacencyList);
+let graph3 = new Graph();
+graph3.addVertex('A');
+graph3.addVertex('B');
+graph3.addVertex('C');
+graph3.addVertex('D');
+graph3.addVertex('E');
+graph3.addVertex('S');
 
-console.log(graph.isPath('E', 'S'));
-console.log(graph2.isPath('E', 'S'));
+graph3.addEdge('A', 'E');
+graph3.addEdge('E', 'B');
+graph3.addEdge('B', 'C');
+graph3.addEdge('C', 'D');
+graph3.addEdge('B', 'S');
+graph3.addEdge('S', 'A');
+
+// test cases
+console.log(graph.isPath('E', 'S') === false);
+console.log(graph2.isPath('E', 'S') === true);
+console.log(graph3.isPath('E', 'S') === true);
