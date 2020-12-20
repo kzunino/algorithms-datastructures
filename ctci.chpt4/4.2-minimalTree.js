@@ -8,17 +8,17 @@ write an algorithm to create a binary search tree with minimal height.
 
 
 EXAMPLE
-Input: 
-Output: 
+Input: Sorted Array
+Output: Binary Search Tree
 
-Input:
-Output: 
-Constraints:  
-Edge Case:
+Input: Sorted Array
+Output: BST
+Constraints: Optimize  
+Edge Case: 
 
-Time Complexity:
+Time Complexity: O(n log n)
 
-Space Complexity: 
+Space Complexity: O(n)
 
 
 Optimized version:
